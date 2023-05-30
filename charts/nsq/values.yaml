@@ -45,6 +45,10 @@ nsqlookupd:
 
   affinity: {}
 
+  service:
+    type: ClusterIP
+    annotations:
+
 nsqadmin:
   enabled: true
 
