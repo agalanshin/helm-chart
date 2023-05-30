@@ -5,13 +5,15 @@ metadata:
   labels:
     {{- include "nsq.commonLabels" . | nindent 4 }}
 spec:
-  clusterIP: None
+  type: {{ .Values.nsqlookupd.service.type }}
   ports:
-  - port: 4160
-    name: tcp
-    targetPort: 4160
-  - port: 4161
-    name: http
-    targetPort: 4161
+  - name: http
+    port: 4160
+    protocol: TCP
+    targetPort: http
+  - name: tcp
+    port: 4161
+    protocol: TCP
+    targetPort: tcp
   selector:
     {{- include "nsq.nsqlookupd.selectorLabels" . | nindent 4 }}
